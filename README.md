@@ -1,3 +1,3 @@
 ## Data structures using Python
 
-all the sample exercise are build up on python 3.x
+All the sample exercises are built up on python 3.x
