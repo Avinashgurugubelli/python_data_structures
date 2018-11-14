@@ -50,12 +50,13 @@ if __name__ == '__main__':
     | 5  |  o-------->| 10  |  o-------->|  36 | null |
     +----+------+     +----+------+     +----+------+
     '''
-    lst_Length = linked_list_1.get_list_length()
+    lst_Length = linked_list_1.get_list_length
     print('length of linked List: '+ str(lst_Length))
     linked_list_1.print_list()
     # endregion
 
     # region Node insertion
-    linked_list_1.insert_at_beginning(100)
-    linked_list_1.insert_at_end(12)
+    linked_list_1.insert_node_at_position(0, 112) # Insertion at beginning
+    linked_list_1.insert_node_at_position(linked_list_1.get_list_length, 236) # Insertion at end
+    linked_list_1.insert_node_at_position(3, 99)
     # endregion
