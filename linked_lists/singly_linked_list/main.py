@@ -62,4 +62,5 @@ if __name__ == '__main__':
     # endregion
     # region node deletion
     linked_list_1.delete_node_at_beginning()
+    linked_list_1.delete_node_at_end()
     # end region

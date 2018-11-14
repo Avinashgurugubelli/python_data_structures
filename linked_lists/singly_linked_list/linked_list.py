@@ -21,7 +21,7 @@ class LinkedList:
             current = current.next
         return count
 
-    # This function prints contents of linked list starting from head
+    # this function prints contents of linked list starting from head
     def print_list(self):
         print('list elements:')
         current = self.head
@@ -30,7 +30,7 @@ class LinkedList:
             current = current.next
 
     # region node insertion
-    # Insert node at beginning
+    # insert node at beginning
     def insert_at_beginning(self, data):
         '''
         Algorithm:
@@ -47,7 +47,7 @@ class LinkedList:
         print('new node with data {} inserted at beginning, current list length: {}'.format(data, self.get_list_length))
         self.print_list()
 
-    # Insert node at end
+    # insert node at end
     def insert_at_end(self, data):
         '''
         Algorithm:
@@ -63,7 +63,7 @@ class LinkedList:
         print('new node with data {} inserted at end, current list length: {}'.format(data, self.get_list_length))
         self.print_list()
     
-    # Insert node at given position
+    # insert node at given position
     def insert_node_at_position(self, position, data):
         '''
         Algorithm:
@@ -96,14 +96,28 @@ class LinkedList:
     # endregion node insertion         
 
     #region node deletion
-    # Delete node at beginning
+    # delete node at beginning
     def delete_node_at_beginning(self):
         if self.head == None:
             print('currently list is empty')
         else:
-            node_data_to_delete = self.head.data
+            node_data_to_delete = self.head.data # for printing purpose
             self.head = self.head.next
             print('node with data {} at beginning deleted, current list length: {}'.format(node_data_to_delete,self.get_list_length))
             self.print_list()
+    
+    # delete node at end
+    def delete_node_at_end(self):
+        current_node = self.head
+        previous_node = self.head
+        node_data_to_delete = self.head.data # for printing purpose
+        while current_node.next != None:
+            previous_node = current_node
+            current_node = current_node.next
+        node_data_to_delete = current_node.data
+        previous_node.next = None
+        print('node with data {} at end deleted, current list length: {}'.format(node_data_to_delete,self.get_list_length))
+        self.print_list()
+
     #endregion node deletion
         
