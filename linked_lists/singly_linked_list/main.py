@@ -52,7 +52,7 @@ if __name__ == '__main__':
     '''
     lst_Length = linked_list_1.get_list_length()
     print('length of linked List: '+ str(lst_Length))
-    linked_list_1.printList()
+    linked_list_1.print_list()
     # endregion
 
     # region Node insertion

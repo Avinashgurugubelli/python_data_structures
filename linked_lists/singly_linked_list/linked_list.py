@@ -22,7 +22,7 @@ class LinkedList:
         return count
 
     # This function prints contents of linked list starting from head
-    def printList(self):
+    def print_list(self):
         print('list elements:')
         current = self.head
         while current:
@@ -39,7 +39,7 @@ class LinkedList:
             new_node.next = self.head
             self.head = new_node
         print('new node with data {} inserted at beginning'.format(data))
-        self.printList()
+        self.print_list()
 
     # Insert node at end
     def insert_at_end(self, data):
@@ -50,6 +50,6 @@ class LinkedList:
             current_node = current_node.next
         current_node.next = new_node
         print('new node with data {} inserted at end'.format(data))
-        self.printList()
+        self.print_list()
 
         
