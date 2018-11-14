@@ -93,13 +93,13 @@ class LinkedList:
             current_node.next = new_node
             print('new node with data {} inserted at postion {}, current list length: {}'.format(data, position, self.get_list_length))
             self.print_list()
-    # endregion node insertion         
+    # endregion node insertion
 
     #region node deletion
     # delete node at beginning
     def delete_node_at_beginning(self):
         if self.head == None:
-            print('currently list is empty')
+            raise ValueError('currently list is empty')
         else:
             node_data_to_delete = self.head.data # for printing purpose
             self.head = self.head.next
@@ -118,6 +118,25 @@ class LinkedList:
         previous_node.next = None
         print('node with data {} at end deleted, current list length: {}'.format(node_data_to_delete,self.get_list_length))
         self.print_list()
-
+    
+    # delete node at postion
+    def delete_node_at_position(self, position):
+        if position < 0 or position > self.get_list_length:
+            raise ValueError('empty list')
+        elif position == 0:
+            self.delete_node_at_beginning()
+        elif position == self.get_list_length:
+            self.delete_node_at_end()
+        else:
+            count = 0
+            current_node = self.head
+            previous_node = self.head
+            while current_node.next != None and count < position:
+                count += 1
+                previous_node = current_node
+                current_node = current_node.next
+            previous_node.next = current_node.next
+            print('node with data {} at position {} deleted, current list length: {}'.format(current_node.data, position, self.get_list_length))
+            self.print_list()
     #endregion node deletion
         

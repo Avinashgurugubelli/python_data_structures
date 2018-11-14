@@ -61,6 +61,7 @@ if __name__ == '__main__':
     linked_list_1.insert_node_at_position(3, 99)
     # endregion
     # region node deletion
-    linked_list_1.delete_node_at_beginning()
-    linked_list_1.delete_node_at_end()
+    linked_list_1.delete_node_at_position(0)
+    linked_list_1.delete_node_at_position(3)
+    linked_list_1.delete_node_at_position(linked_list_1.get_list_length)
     # end region
