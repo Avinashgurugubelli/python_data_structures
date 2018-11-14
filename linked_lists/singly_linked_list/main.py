@@ -60,3 +60,6 @@ if __name__ == '__main__':
     linked_list_1.insert_node_at_position(linked_list_1.get_list_length, 236) # Insertion at end
     linked_list_1.insert_node_at_position(3, 99)
     # endregion
+    # region node deletion
+    linked_list_1.delete_node_at_beginning()
+    # end region

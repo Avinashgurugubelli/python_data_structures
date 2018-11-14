@@ -95,4 +95,15 @@ class LinkedList:
             self.print_list()
     # endregion node insertion         
 
+    #region node deletion
+    # Delete node at beginning
+    def delete_node_at_beginning(self):
+        if self.head == None:
+            print('currently list is empty')
+        else:
+            node_data_to_delete = self.head.data
+            self.head = self.head.next
+            print('node with data {} at beginning deleted, current list length: {}'.format(node_data_to_delete,self.get_list_length))
+            self.print_list()
+    #endregion node deletion
         
