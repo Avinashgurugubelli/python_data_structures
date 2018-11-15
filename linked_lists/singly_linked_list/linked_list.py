@@ -85,7 +85,7 @@ class LinkedList:
             new_node = Node()
             new_node.data = data
             current_node = self.head
-            counter = 0;
+            counter = 0
             while counter < position - 1:
                 counter += 1
                 current_node = current_node.next
