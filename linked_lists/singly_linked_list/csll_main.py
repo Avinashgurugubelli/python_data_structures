@@ -18,7 +18,11 @@ if __name__ == "__main__":
     linked_list_1.push(3)
     linked_list_1.push(4)
     linked_list_1.append(6)
-    linked_list_1.insert_at_position(45,2)
-    linked_list_1.insert_at_position(45647,3)
-    # linked_list_1.push(36)
+    linked_list_1.add(45,2)
+    linked_list_1.add(45647,3)
     # endregion
+    #region deletion
+    linked_list_1.delete(0)
+    linked_list_1.delete(linked_list_1.get_length)
+    linked_list_1.delete(linked_list_1.get_length -1)
+    #endregion
