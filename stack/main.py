@@ -1,3 +1,9 @@
+
+# Below os and sys imports required to match the custom imports
+import os, sys
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(CURRENT_DIR))
+
 from stack import Stack;
 
 if __name__ == "__main__":
