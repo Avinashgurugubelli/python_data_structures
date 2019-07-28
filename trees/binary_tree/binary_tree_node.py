@@ -25,5 +25,6 @@ class BinaryTreeNode:
     def left(self, left):
         self.__left = left
     
+    @right.setter
     def right(self, right):
         self.__right = right
