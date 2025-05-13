@@ -90,6 +90,22 @@ def inorder_iterative(root):
         print(current.val, end=' ')
         current = current.right
 ```
+### 🧪 Python Code - Other way
+```python
+def inorder(root):
+    stack = []
+    current = root
+    while stack or current:
+        if current is not None:
+            stack.append(current)
+            current = current.left
+        else:
+            current = stack.pop()
+            print(current.data)
+            current = current.right
+
+```
+
 
 ### 📦 Stack Visualization
 
