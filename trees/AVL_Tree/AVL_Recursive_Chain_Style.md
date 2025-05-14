@@ -1,287 +1,407 @@
 
-# 🔁 AVL Tree Recursive Dry Run (Chain Style)
+# AVL Tree Insertions
 
-## 🧩 Step-by-Step Recursive Calls for Insert Sequence:
-```
-[50, 30, 70, 20, 40, 60, 80, 10, 35, 45, 55, 65]
-```
+Sequence: [1,2,3,4,5,6,7,15,14,13,12,11,10,9,8,25,35]
 
----
-
-### Insert 50
-```
-insert(root=None, key=50)
-→ root is None → create Node(50)
-```
-
-### Insert 30
-```
-insert(50, 30)
-→ key < 50 → insert(30 in left subtree)
-    insert(None, 30) → create Node(30)
-← back to 50: update height = 2, balance = 1 → OK
-```
-
-### Insert 70
-```
-insert(50, 70)
-→ key > 50 → insert(70 in right subtree)
-    insert(None, 70) → create Node(70)
-← back to 50: update height = 2, balance = 0 → OK
-```
-
-### Insert 20
-```
-insert(50, 20)
-→ left
-    insert(30, 20)
-    → left
-        insert(None, 20) → Node(20)
-    ← 30: height = 2, balance = 1
-← 50: height = 3, balance = 1 → OK
-```
-
-### Insert 40
-```
-insert(50, 40)
-→ left
-    insert(30, 40)
-    → right
-        insert(None, 40) → Node(40)
-    ← 30: height = 2, balance = 0
-← 50: height = 3, balance = 1 → OK
-```
-
-### Insert 60
-```
-insert(50, 60)
-→ right
-    insert(70, 60)
-    → left
-        insert(None, 60) → Node(60)
-    ← 70: height = 2, balance = 1
-← 50: height = 3, balance = 0 → OK
-```
-
-### Insert 80
-```
-insert(50, 80)
-→ right
-    insert(70, 80)
-    → right
-        insert(None, 80) → Node(80)
-    ← 70: height = 2, balance = 0
-← 50: height = 3, balance = 0 → OK
-```
-
-### Insert 10 (Triggers Left-Left imbalance)
-```
-insert(50, 10)
-→ left
-    insert(30, 10)
-    → left
-        insert(20, 10)
-        → left
-            insert(None, 10) → Node(10)
-        ← 20: height = 2, balance = 1
-    ← 30: height = 3, balance = 1
-← 50: height = 4, balance = 2 → 🚨 unbalanced
-
-➡ Left-Left case → rightRotate(50)
-New subtree root = 30
-```
-
-### Insert 35
-```
-insert(30, 35)
-→ right
-    insert(50, 35)
-    → left
-        insert(40, 35)
-        → left
-            insert(None, 35) → Node(35)
-        ← 40: height = 2, balance = 1
-    ← 50: height = 3, balance = 1
-← 30: height = 4, balance = 0 → OK
-```
-
-### Insert 45 (Triggers Left-Right imbalance)
-```
-insert(30, 45)
-→ right
-    insert(50, 45)
-    → left
-        insert(40, 45)
-        → right
-            insert(None, 45) → Node(45)
-        ← 40: height = 2, balance = 0
-    ← 50: height = 3, balance = 2 → 🚨 unbalanced
-
-➡ Left-Right case → leftRotate(40) → rightRotate(50)
-New subtree root = 45
-```
-
-### Insert 55
-```
-insert(30, 55)
-→ right
-    insert(45, 55)
-    → right
-        insert(50, 55)
-        → right
-            insert(None, 55) → Node(55)
-        ← 50: height = 2, balance = -1
-    ← 45: height = 3, balance = -1
-← 30: height = 4, balance = -1 → OK
-```
-
-### Insert 65 (Triggers Right-Left imbalance)
-```
-insert(30, 65)
-→ right
-    insert(45, 65)
-    → right
-        insert(50, 65)
-        → right
-            insert(70, 65)
-            → left
-                insert(60, 65)
-                → right
-                    insert(None, 65) → Node(65)
-                ← 60: height = 2, balance = -1
-            ← 70: height = 3, balance = 1
-        ← 50: height = 4, balance = -2 → 🚨 unbalanced
-
-➡ Right-Left case → rightRotate(70), leftRotate(50)
-New subtree root = 60
-```
-
----
-
-## ✅ Final Balanced AVL Tree
+## Step 1: Insert 1
+Tree after insertion:
 
 ```
-         30
-       /    \
-     20      60
-    /      /    \
-  10     50      70
-         /  \    /  \
-       40   55  65  80
-      /  \
-    35   45
+1
 ```
+Insert 1 as the root node of the tree.
 
-
-## AVL Tree Deletion — Recursive Chain Dry-Run
-
-- Insertion sequence: [50, 30, 70, 20, 40, 60, 80, 10, 35, 45, 55, 65]
-
-- Deletion Sequence: [10, 20, 40, 60]
-
-
-### ❌ Delete 10 — No Rebalance
+## Step 2: Insert 2
+Tree after insertion:
 
 ```
-delete(50, 10)
-→ left
-  delete(30, 10)
-  → left
-    delete(20, 10)
-    → left
-      delete(10, 10)
-      → match found → no children → return None
-    ← back to 20: height = 1, balance = 0 → OK
-  ← back to 30: height = 3, balance = 1 → OK
-← back to 50: height = 4, balance = 1 → OK
+    1
+     \
+      2
+```
+Insert 2 as the right child of 1.
+
+The tree remains balanced.
+
+## Step 3: Insert 3
+Tree after insertion:
+
+```
+    1
+     \
+      2
+       \
+        3
+```
+Insert 3 as the right child of 2.
+
+The tree is unbalanced with a balance factor of +2 at node 1, so we need to perform a left rotation at node 1.
+
+After left rotation at node 1:
+
+```
+    2
+   / \
+  1   3
+```
+The tree is balanced after the left rotation, with 2 as the root.
+
+## Step 4: Insert 4
+Tree after insertion:
+
+```
+    2
+   / \
+  1   3
+       \
+        4
+```
+Insert 4 as the right child of 3.
+
+The tree remains balanced.
+
+## Step 5: Insert 5
+Tree after insertion:
+
+```
+    2
+   / \
+  1   3
+       \
+        4
+         \
+          5
+```
+Insert 5 as the right child of 4.
+
+The tree becomes unbalanced at node 3 with a balance factor of +2, so we perform a left rotation at node 3.
+
+After left rotation at node 3:
+
+```
+    2
+   / \
+  1   4
+     / \
+    3   5
+```
+The tree is balanced again after the left rotation.
+
+## Step 6: Insert 6
+
+Tree after insertion: (Insert to the right of 5)
+
+```
+    2
+   / \
+  1   4
+     / \
+    3   5
+         \
+          6
+```
+Balance at 5 = -1, at 4 = -2 → RR case at node 2.
+
+🔁 Rotate Left at 2:
+```
+    4
+   / \
+  2   5
+ / \    \
+1   3    6
 
 ```
 
-✅ No rebalancing needed.
+The tree now balanced.
 
-
-### ❌ Delete 20 — Rebalance Required (Right Rotation)
-
-```
-delete(50, 20)
-→ left
-  delete(30, 20)
-  → left
-    delete(20, 20)
-    → match found → no children → return None
-  ← back to 30: height = 2, balance = 0
-← back to 50: height = 4, balance = 2 → 🚨 Unbalanced
-
-→ Balance(50) = 2 (left-heavy)
-→ Balance(30) = 0 → 🔁 Left-Left Case
-
-➡ Perform rightRotate(50)
-→ New root = 30
+## Step 7: Insert 7
+- Insert to the right of 6.
+Tree after insertion:
 
 ```
-✅ Right rotation fixes imbalance
-
-
-### ❌ Delete 40 — No Rebalance
-
-```
-delete(30, 40)
-→ right
-  delete(50, 40)
-  → left
-    delete(40, 40)
-    → match found → one child (45) → return 45
-  ← back to 50: height = 2, balance = 0 → OK
-← back to 30: height = 3, balance = 0 → OK
+    4
+   / \
+  2   5
+ / \    \
+1   3    6
+            \
+             7
 
 ```
-✅ Simple replace. No rebalancing needed.
+Balance at 6 = -1, at 5 = -2 → RR case at node 5.
 
-
-### ❌ Delete 60 — Rebalance Required (Right-Left Case)
-
-```
-delete(30, 60)
-→ right
-  delete(50, 60)
-  → right
-    delete(70, 60)
-    → left
-      delete(60, 60)
-      → match found → no children → return None
-    ← 70: height = 2 → balance = -1
-  ← 50: height = 3 → balance = -2 → 🚨 Unbalanced
-
-→ Balance(50) = -2
-→ Balance(70) = -1 → 🔁 Right-Left Case
-
-➡ Perform rightRotate(70)
-➡ Perform leftRotate(50)
+🔁 Rotate Left at 5:
 
 ```
-
-✅ Double rotation restores balance.
-
-
-### ✅ Final Tree (After All Deletions)
+    4
+   / \
+  2   6
+ / \  / \
+1  3 5  7
 
 ```
-        30
-      /    \
-    None    65
-           /  \
-         50    70
-        /  \     \
-      45   55     80
+The tree is balanced again after the RR rotation.
+
+## Step 8: Insert 15
+- Goes to right of 7.
+
+```
+    4
+   / \
+  2   6
+ / \  / \
+1  3 5  7
+         \
+          15
+
+```
+Balance at 7 = -1, all other balances okay → no rotation.
+
+## Step 9: Insert 14
+- Goes to left of 15 → RL case at node 7.
+
+```
+    4
+   / \
+  2   6
+ / \  / \
+1  3 5  7
+         \
+          15
+        /
+       14
+
+```
+Balance at 7 = -2, and right child (15) has a left child → Right-Left (RL)
+
+🔁 Rotate Right at 15, then Rotate Left at 7:
+
+```
+    4
+   / \
+  2   6
+ / \  / \
+1  3 5  14
+        / \
+       7   15
 
 ```
 
-### 📝 Summary Table
+## Step 10: Insert 13
+Inserted as left of 14 → triggers RL case at node 6.
 
-| Deleted | Rebalance? | Case       | Action                 |
-| ------- | ---------- | ---------- | ---------------------- |
-| 10      | ❌ No       | Leaf       | None                   |
-| 20      | ✅ Yes      | Left-Left  | rightRotate(50)        |
-| 40      | ❌ No       | One Child  | None                   |
-| 60      | ✅ Yes      | Right-Left | rightRotate+leftRotate |
+```
+    4
+   / \
+  2   6
+ / \  / \
+1  3 5  14
+         / \
+       13  15
+      /
+     7
 
+```
+- Balance at 6 = -2 → RL case at node 6.
+
+🔁 Rotate Right at 14, then Rotate Left at 6:
+
+```
+    4
+   / \
+  2   7
+ / \  / \
+1  3 6  14
+     /  / \
+    5 13  15
+
+```
+
+## Step 11: Insert 12
+- inserts to the left of 13
+
+```
+    4
+   / \
+  2   7
+ / \  / \
+1  3 6  14
+     /  / \
+    5 13  15
+      /
+      12
+```
+- BF of 13   = 1  -> OK
+- BF of 14   = 1  -> OK
+- BF of 7    = -1 -> OK
+- BF of 4    = -2 -> Un-balanced (RR rotation)
+
+```
+         7
+       /   \
+      4     14
+     / \    / \
+    2   6 13   15
+   / \  /  /
+  1  3 5  12
+
+```
+
+## Step 12: Insert 11
+
+- inserts to the left of 12
+```
+         7
+       /   \
+      4     14
+     / \    / \
+    2   6 13   15
+   / \  /  /
+  1  3 5  12
+          /
+        11
+
+```
+- BF of 12   = 1  -> OK
+- BF of 13   = 2  -> Un-balanced (LL Rotation)
+
+```
+         7
+       /   \
+      4     14
+     / \    / \
+    2   6 12   15
+   / \  /  / \
+  1  3 5 11  13
+
+```
+
+## Step 13: Insert 10
+
+- inserts to the left of 11
+
+```
+         7
+       /   \
+      4     14
+     / \    / \
+    2   6 12   15
+   / \  /  / \
+  1  3 5 11  13
+        /
+       10 
+```
+- BF of 11   = 1  -> OK
+- BF of 12   = 1  -> OK
+- BF of 14   = 2  -> Un-balanced (LL Rotation)
+
+```
+            7
+         /      \
+        4        12
+       / \       / \
+      2   6     11   14
+     / \  /     /    / \
+    1  3 5     10   13  15
+           
+```
+
+## Step 14: Insert 9
+
+- inserts to the left of 10
+```
+            7
+         /      \
+        4        12
+       / \       / \
+      2   6     11   14
+     / \  /     /    / \
+    1  3 5     10   13  15
+              /
+             9 
+           
+```
+
+- BF of 10   = 1  -> OK
+- BF of 11   = 2  -> Un-balanced (LL Rotation)
+
+```
+              7 
+         /         \
+        4           12
+       / \       /      \
+      2   6     10      14
+     / \  /     / \     / \
+    1  3 5     9   11   13  15
+              
+```
+
+## Step 15: Insert 8
+
+- inserts to the left of 9
+
+```
+              7 
+         /         \
+        4           12
+       / \       /      \
+      2   6     10      14
+     / \  /     / \     / \
+    1  3 5     9   11   13  15
+              /
+            8
+              
+```
+- Tree is balance no need of rotations.
+
+## Step 16: Insert 25
+
+- inserts to the right of 15
+
+```
+              7 
+         /         \
+        4           12
+       / \       /      \
+      2   6     10      14
+     / \  /     / \     / \
+    1  3 5     9   11   13  15
+              /               \
+             8                  25
+              
+```
+- Tree is balance no need of rotations.
+
+## Step 17: Insert 35
+
+- inserts to the right of 25
+
+```
+              7 
+         /         \
+        4           12
+       / \       /      \
+      2   6     10      14
+     / \  /     / \     / \
+    1  3 5     9   11   13  15
+              /               \
+             8                  25
+                                  \
+                                   35
+              
+```
+- BF of 25   = -1  -> OK
+- BF of 15   = -2  -> Un-balanced (RR Rotation)
+
+```
+              7 
+         /         \
+        4           12
+       / \       /      \
+      2   6     10      14
+     / \  /     / \     / \
+    1  3 5     9   11   13  25
+              /             / \
+             8             15    25
+              
+```
